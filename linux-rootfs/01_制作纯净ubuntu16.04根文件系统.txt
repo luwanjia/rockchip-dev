@@ -51,11 +51,11 @@
     6> 设置默认登录方式
         #dpkg-reconfigure lightdm
     7> 设置系统默认语言及编码方式
-        #apt install locales
-        #dpkg-reconfigure locales  // 根据提示，空格键选择"en_US.UTF-8 UTF-8" "zh_CN GB2312" "zh_CN.GB18030 GB18030" "zh_CN.GBK GBK" "zh_CN.UTF-8 UTF-8"; SDL运行时，如果系统语言不是UTF8，则会导致蓝牙app无法全部注册上
+	    #apt install locales       // 系统语言及编码格式
+        #dpkg-reconfigure locales  // 根据提示，空格键选择"en_US.UTF-8 UTF-8" "zh_CN GB2312" "zh_CN.GB18030 GB18030" "zh_CN.GBK GBK" "zh_CN.UTF-8 UTF-8"; SDL运行时，如果系统语言未配置，则会导致蓝牙app无法全部注册上
     8> 设置主机名
-        #echo "sync" > /etc/hostname
-        #echo "127.0.0.1 sync" > /etc/hosts // 解决系统运行时，执行sudo报错：sudo: unable to resolve host localhost.localdomain
+        #echo "localhost" > /etc/hostname
+        #echo "127.0.0.1 localhost" > /etc/hosts // 解决系统运行时，执行sudo报错：sudo: unable to resolve host localhost.localdomain
     9> 添加用户并设置密码
         #useradd -s '/bin/bash' -m -G adm,sudo ubuntu
         #passwd ubuntu  // 设置一般用户密码
@@ -84,7 +84,7 @@
         #exit
 10. 卸载根文件系统
     $./ch-mount.sh -u linux-rootfs
-
+    (如果无法正常退出，请重启电脑。)
 11. 至此，根文件系统已制作完毕。
     此时，系统里面还没有安装驱动，wifi及网络无法使用，硬件解码也未配置。
     
