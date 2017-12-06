@@ -1,0 +1,13 @@
+FIRMWARE_VER:5.0.0
+MACHINE_MODEL:rk3288
+MACHINE_ID:007
+MANUFACTURER:RK3288
+MAGIC: 0x5041524B
+ATAG: 0x60000800
+MACHINE: 3288
+CHECK_MASK: 0x80
+PWR_HLD: 0,0,A,0,1
+#KERNEL_IMG: 0x62008000
+#FDT_NAME: rk-kernel.dtb
+#RECOVER_KEY: 1,1,0,20,0
+CMDLINE:earlyprintk=ttyS2,115200 console=tty0 console=ttyS2,115200 androidboot.selinux=permissive androidboot.hardware=rk30board androidboot.console=ttyS2 root=/dev/mmcblk2p3 linuxroot rw rootfstype=ext4 init=/sbin/init initrd=0x62000000,0x00800000 mtdparts=rk29xxnand:0x00010000@0x00002000(boot),0x00002000@0x00012000(backup),-@0x00014000(linuxroot)

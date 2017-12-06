@@ -1,0 +1,37 @@
+内核编译
+
+1. 安装编译器
+    $cd tools
+    $tar -xvf arm-eabi-4.8.tar.gz
+    $sudo mv arm-eabi-4.8 /opt
+    $gedit ~/.bashrc
+        Append follow string:
+        export PATH=$PATH:/opt/arm-eabi-4.8/bin
+    $source ~/.bashrc // 使立即生效
+
+2. 安装基础库
+    $sudo apt-get install lib32ncurses5 lib32z1 lib32stdc++6 libssl-dev
+
+3. 安装镜像工具
+    $cd tools/rockchip-mkbootimg
+    $make
+    $sudo make install
+
+4. 编译kernel
+    $cd  linux-kernel
+    $export ARCH=arm
+    $export CROSS_COMPILE=arm-eabi-
+    $make rockchip_linux_defconfig
+    $make rk3288-firefly.img -j4    // 默认支持VGA，支持lvds：$make rk3288-firefly-lvds.img -j4
+
+5. 编译initrd
+    $make -C initrd
+    编译完成后生成initrd.img文件
+
+6. 打包kernel和initrd
+    $mkbootimg \
+     --kernel linux-kernel-4.4/linux-kernel/arch/arm/boot/zImage \
+     --ramdisk initrd.img \
+     --second linux-kernel-4.4/linux-kernel/resource.img \
+     -o linux-boot.img
+    最终生成linux-boot.img。

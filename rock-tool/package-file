@@ -1,0 +1,7 @@
+package-file	package-file
+bootloader	RKLoader.bin
+parameter	  parameter
+boot        Image/linux-boot.img
+backup          RESERVED
+linuxroot   Image/linux-rootfs.img
+

@@ -1,0 +1,91 @@
+如何制作ubuntu16.04根文件系统（rootfs）
+
+1. 下载ubuntu16.04的最小系统
+    $wget -c http://cdimage.ubuntu.com/ubuntu-base/releases/16.04.3/release/ubuntu-base-16.04.3-base-armhf.tar.gz
+
+2. 解压到自定义目录
+    $mkdir linux-rootfs // 新建自定义目录
+    $sudo tar -xvpf ubuntu-base-16.04.3-base-armhf.tar.gz -C linux-rootfs
+
+3. 安装模拟器工具
+    $sudo apt-get install qemu-user-static // 已安装的略过
+
+4. 复制模拟工具到根文件系统
+    $sudo cp /usr/bin/qemu-arm-static linux-rootfs/usr/bin/
+
+5. 复制本地DNS配置到根文件系统
+    $sudo cp -b /etc/resolv.conf linux-rootfs/etc/resolv.conf
+
+6. 修改根文件系统的源文件
+    $sudo cp sources.list linux-rootfs/etc/apt/sources.list // 已经修改好，直接覆盖，或者直接修改linux-rootfs/etc/apt/sources.list
+
+7. 添加开机启动脚本
+    $sudo cp -r rootfs_bootservice/* linux-rootfs
+
+8. 挂载根文件系统
+    $./ch-mount.sh -m linux-rootfs
+
+9. 此时已经进入了根文件系统的shell，对其进行配置
+    1> 更新源
+        #apt update
+    2> 更新系统
+        #apt dist-upgrade
+    3> 安装常用工具及软件
+        #apt install bash-completion // shell自动补全
+        #apt install net-tools       // 没有这个，ifconfig命令没有
+        #apt install inetutils-ping  // 没有这个，ping命令没有
+        #apt install openssh-server  // ssh的服务，方便通过ssh命令局域网登录开发板或者传送文件，不需要的可略过
+        #apt install pulseaudio-module-bluetooth // 没有这个，蓝牙音频没有声音
+        #apt install bluez-tools     // 没有这个，bt-device命令没有，sdl中蓝牙搜索不到配对设备
+        #apt install vim-tiny        // 安装vi编辑器
+        （其它工具及软件，请自行安装）
+    4> 安装xubuntu桌面环境
+        #apt install ubuntu-session xubuntu-desktop // 这个耗时较长，请耐心等待，过程中按照提示配置语言及字符编码
+        执行此命令到最后会报错：
+            Errors were encountered while processing:
+                blueman
+        开启dbus服务，再重新执行一遍，即可解决此问题。
+        #/etc/init.d/dbus start
+    5> 设置桌面环境启动选项
+        #update-alternatives --config x-session-manager // xubuntu选择startxfce4
+    6> 设置默认登录方式
+        #dpkg-reconfigure lightdm
+    7> 设置系统默认语言及编码方式
+        #apt install locales
+        #dpkg-reconfigure locales  // 根据提示，空格键选择"en_US.UTF-8 UTF-8" "zh_CN GB2312" "zh_CN.GB18030 GB18030" "zh_CN.GBK GBK" "zh_CN.UTF-8 UTF-8"; SDL运行时，如果系统语言不是UTF8，则会导致蓝牙app无法全部注册上
+    8> 设置主机名
+        #echo "sync" > /etc/hostname
+        #echo "127.0.0.1 sync" > /etc/hosts // 解决系统运行时，执行sudo报错：sudo: unable to resolve host localhost.localdomain
+    9> 添加用户并设置密码
+        #useradd -s '/bin/bash' -m -G adm,sudo ubuntu
+        #passwd ubuntu  // 设置一般用户密码
+        #passwd root    // 设置root密码
+    10> 卸载冗余软件
+        #apt remove thunderbird      // 邮箱客户端
+        #apt remove gnome-mines      // 游戏
+        #apt remove gnome-sudoku     // 游戏
+        #apt remove pidgin           // 聊天客户端
+        #apt remove transmission-gtk // 下载工具
+        #apt remove gnome-software   // 软件中心
+        #apt autoremove
+    11> 安装qt5支持
+        #apt install qt5-default
+    12> 重新配置时区
+        #dpkg-reconfigure tzdata // 选择亚洲、上海
+    13> 禁止apport报错
+        #vi etc/default/apport
+        (设置enabled=0)
+    14> 设置开机启动脚本：
+        #systemctl enable rockchip.service
+    15> 清理工作，防止镜像文件过大，烧录时间过长
+        #apt clean
+        #rm -rf /var/lib/apt/lists/*          // 这里是更新源保存的临时文件，可删除，之后开发板上重新更新源
+    16> 退出
+        #exit
+10. 卸载根文件系统
+    $./ch-mount.sh -u linux-rootfs
+
+11. 至此，根文件系统已制作完毕。
+    此时，系统里面还没有安装驱动，wifi及网络无法使用，硬件解码也未配置。
+    
+        

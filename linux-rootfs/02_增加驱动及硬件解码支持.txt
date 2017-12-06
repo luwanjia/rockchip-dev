@@ -1,0 +1,34 @@
+增加驱动及硬件解码支持
+
+1. 给已经制作好的根文件系统上添加驱动
+    $git clone https://github.com/rockchip-linux/rk-rootfs-build.git
+    $sudo cp -r rk-rootfs-build/overlay-firmware/* linux-rootfs
+2. 安装mpp和gstreamer
+    1> 复制安装包
+        $sudo mkdir -p linux-rootfs/packages  // 建立临时目录
+        $sudo cp -r rootfs_gstreamer linux-rootfs/packages // 这些是gstreamer的依赖库
+        $sudo cp -r rk-rootfs-build/packages/armhf/video linux-rootfs/packages // 这些是mpp和gstreamer安装包
+    2> 挂载根文件系统
+        $./ch-mount.sh -m linux-rootfs
+    3> 此时已经进入了根文件系统的shell，安装mpp和gstreamer
+        安装依赖包：
+        #dpkg -i packages/rootfs_gstreamer/01_dep/*.deb
+        #dpkg -i packages/rootfs_gstreamer/02_dep/*.deb
+
+        安装gstreamer基础包：
+        #dpkg -i packages/rootfs_gstreamer/*.deb
+
+        安装mpp插件：
+        #dpkg -i  /packages/video/mpp/librockchip-mpp1_*_armhf.deb
+        #dpkg -i  /packages/video/mpp/librockchip-mpp-dev_*_armhf.deb
+
+        安装gstreamer主体包：
+        #dpkg -i  /packages/video/gstreamer/gstreamer1.0-rockchip*.deb
+
+        删除临时目录：
+        #rm -rf packages
+
+        安装完毕，退出：
+        #exit
+    4>卸载根文件系统
+        $./ch-mount.sh -u linux-rootfs

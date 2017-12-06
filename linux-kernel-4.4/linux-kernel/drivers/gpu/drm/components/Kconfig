@@ -1,0 +1,15 @@
+menu "Standalone components for use with the component framework"
+     depends on DRM && DRM_KMS_HELPER
+
+config DRM_COMPONENTS_VGA_ENCODER
+	tristate "Generic vga encoder"
+	help
+	  Support for generic vga encoder chips without any special controls.
+
+config DRM_COMPONENTS_VGA_CONNECTOR
+	tristate "Generic vga connector"
+	help
+	  Support for simple vga connectors using a system i2c bus
+	  for ddc.
+
+endmenu

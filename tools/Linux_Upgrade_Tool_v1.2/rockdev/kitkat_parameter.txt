@@ -1,0 +1,15 @@
+FIRMWARE_VER:4.4.2
+MACHINE_MODEL:rk30sdk
+MACHINE_ID:007
+MANUFACTURER:RK30SDK
+MAGIC: 0x5041524B
+ATAG: 0x60000800
+MACHINE: 3066
+CHECK_MASK: 0x80
+PWR_HLD: 0,0,A,0,1
+#KERNEL_IMG: 0x62008000
+#FDT_NAME: rk-kernel.dtb
+#RECOVER_KEY: 1,1,0,20,0
+CMDLINE:console=ttyFIQ0 androidboot.hardware=rk30board androidboot.console=ttyFIQ0 board.ap_has_alsa=0 init=/init initrd=0x62000000,0x00800000 mtdparts=rk29xxnand:0x00002000@0x00002000(uboot),0x00002000@0x00004000(misc),0x00008000@0x00006000(resource),0x00008000@0x0000e000(kernel),0x00010000@0x00016000(boot),0x00010000@0x00026000(recovery),0x0001a000@0x00036000(backup),0x00040000@0x00050000(cache),0x00002000@0x00090000(kpanic),0x00100000@0x00092000(system),0x00002000@0x00192000(metadata),0x00200000@0x00194000(userdata),0x00020000@0x00394000(radical_update),-@0x003B4000(user)
+# in section; per section 512(0x200) bytes
+#CMDLINE:console=ttyFIQ0 androidboot.hardware=rk30board androidboot.console=ttyFIQ0 board.ap_has_alsa=0 init=/init initrd=0x62000000,0x00800000 mtdparts=rk29xxnand:0x00002000@0x00002000(uboot),0x00002000@0x00004000(misc),0x00008000@0x00006000(resource),0x00008000@0x0000e000(kernel),0x00010000@0x00016000(boot),0x00010000@0x00026000(recovery),0x0001a000@0x00036000(backup),0x00040000@0x00050000(cache),0x00002000@0x00090000(kpanic),0x00100000@0x00092000(system),0x00002000@0x00192000(metadata),0x00020000@0x00394000(radical_update),-@0x003B4000(userdata)

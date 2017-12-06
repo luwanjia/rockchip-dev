@@ -1,0 +1,10 @@
+烧录镜像到开发板
+
+1. 开发板供电，数据线连接开发板OTG口和PC的USB口
+2. 同时按下Recovery和Reset按键（分别位于开发板左右两侧）
+3. 释放Reset按键，并且Recovery按键保持2s以上的按下状态再释放
+4. 此时开发板进入烧录状态，执行以下命令
+    $sudo upgrade_tool uf <update.img> // 尖括号内是固件的名称，根据实际名称修改
+    (如果upgrade_tool命令找不到，请复制tools/Linux_Upgrade_Tool_v1.2/upgrade_tool到/usr/local/bin下面）
+5. 请耐心等待，烧录完成后开发板自动重启
+    （开发板第一次桌面加载有些慢，请耐心等待，约5分钟；如果桌面一直无法正常加载，重启开发板可解决）

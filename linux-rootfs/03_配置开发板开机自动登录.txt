@@ -1,0 +1,4 @@
+配置开发板开机自动登录
+
+将配置文件autologin.conf复制到指定目录即可：
+    $sudo cp rootfs_autologin/autologin.conf linux-rootfs/etc/lightdm/lightdm.conf.d/

@@ -1,0 +1,146 @@
+{
+    "did": [
+        "0"
+    ], 
+    "dtc": [
+        "line 0", 
+        "line 1", 
+        "line 2"
+    ], 
+    "vehicle": {
+        "bodyInformation": {
+            "parkBrakeActive": false, 
+            "ignitionStableStatus": "MISSING_FROM_TRANSMITTER", 
+            "ignitionStatus": "UNKNOWN"
+        }, 
+        "engineTorque": 2.5, 
+        "emergencyEvent": {
+            "multipleEvents": "NO_EVENT", 
+            "emergencyEventType": "NO_EVENT", 
+            "rolloverEvent": "NO_EVENT", 
+            "maximumChangeVelocity": "NO_EVENT", 
+            "fuelCutoffStatus": "NORMAL_OPERATION"
+        }, 
+        "vin": "52-452-52-752", 
+        "batteryPackCurrent": 7.0, 
+        "deviceStatus": {
+            "battLevelStatus": "NOT_PROVIDED", 
+            "callActive": false, 
+            "phoneRoaming": false, 
+            "voiceRecOn": false, 
+            "primaryAudioSource": "NO_SOURCE_SELECTED", 
+            "signalLevelStatus": "NOT_PROVIDED", 
+            "btIconOn": false, 
+            "stereoAudioOutputMuted": false, 
+            "textMsgAvailable": false, 
+            "eCallEventActive": false, 
+            "monoAudioOutputMuted": false
+        }, 
+        "rainSensor": 1000000000, 
+        "clusterModeStatus": {
+            "carModeStatus": "FACTORY", 
+            "powerModeQualificationStatus": "POWER_MODE_EVALUATION_IN_PROGRESS", 
+            "powerModeActive": false, 
+            "powerModeStatus": "KEY_OUT"
+        }, 
+        "tripOdometer": 0, 
+        "odometer": 0, 
+        "speed": 90.0, 
+        "steeringWheelAngle": 1.2, 
+        "fuelLevel_State": "UNKNOWN", 
+        "batteryPackTemperature": 34, 
+        "genericbinary": "165165650", 
+        "wiperStatus": "NO_DATA_EXISTS", 
+        "fuelLevel": 0.2, 
+        "beltStatus": {
+            "passengerBuckleBelted": "NOT_SUPPORTED", 
+            "middleRow3BuckleBelted": "NOT_SUPPORTED", 
+            "driverBeltDeployed": "NOT_SUPPORTED", 
+            "leftRearInflatableBelted": "NOT_SUPPORTED", 
+            "middleRow1BeltDeployed": "NOT_SUPPORTED", 
+            "middleRow1BuckleBelted": "NOT_SUPPORTED", 
+            "driverBuckleBelted": "NOT_SUPPORTED", 
+            "passengerBeltDeployed": "NOT_SUPPORTED", 
+            "passengerChildDetected": "NOT_SUPPORTED", 
+            "leftRow2BuckleBelted": "NOT_SUPPORTED", 
+            "rightRow3BuckleBelted": "NOT_SUPPORTED", 
+            "rightRearInflatableBelted": "NOT_SUPPORTED", 
+            "leftRow3BuckleBelted": "NOT_SUPPORTED", 
+            "rightRow2BuckleBelted": "NOT_SUPPORTED", 
+            "middleRow2BuckleBelted": "NOT_SUPPORTED"
+        }, 
+        "prndl": "PARK", 
+        "eCallInfo": {
+            "eCallNotificationStatus": "NORMAL", 
+            "auxECallNotificationStatus": "NORMAL", 
+            "eCallConfirmationStatus": "NORMAL"
+        }, 
+        "driverBraking": "NOT_SUPPORTED", 
+        "batteryPackVoltage": 11.5, 
+        "gps": {
+            "vdop": 3, 
+            "actual": false, 
+            "hdop": 5, 
+            "utcMonth": 2, 
+            "utcDay": 14, 
+            "utcSeconds": 54, 
+            "latitudeDegrees": 30,
+            "pdop": 8, 
+            "utcYear": 2013, 
+            "utcHours": 13, 
+            "satellites": 8, 
+            "heading": 173.0, 
+            "longitudeDegrees": 114,
+            "utcMinutes": 16, 
+            "speed": 90, 
+            "compassDirection":"SOUTHWEST",
+            "dimension":"2D",
+            "altitude": 7
+        }, 
+        "batteryVoltage": 322.0, 
+        "externalTemperature": 23.0, 
+        "instantFuelConsumption": 3.3, 
+        "headLampStatus": {
+            "highBeamsOn": false, 
+            "lowBeamsOn": false, 
+            "ambientLightSensorStatus": "DAY"
+        }, 
+        "tirePressure": {
+            "innerLeftRear": {
+                "status": "UNKNOWN"
+            }, 
+            "pressureTelltale": "OFF", 
+            "innerRightRear": {
+                "status": "UNKNOWN"
+            }, 
+            "leftFront": {
+                "status": "UNKNOWN"
+            }, 
+            "rightRear": {
+                "status": "UNKNOWN"
+            }, 
+            "leftRear": {
+                "status": "UNKNOWN"
+            }, 
+            "rightFront": {
+                "status": "UNKNOWN"
+            }
+        }, 
+        "airbagStatus": {
+            "driverCurtainAirbagDeployed": "NO_EVENT", 
+            "passengerKneeAirbagDeployed": "NO_EVENT", 
+            "driverKneeAirbagDeployed": "NO_EVENT", 
+            "passengerSideAirbagDeployed": "NO_EVENT", 
+            "passengerAirbagDeployed": "NO_EVENT", 
+            "driverAirbagDeployed": "NO_EVENT", 
+            "passengerCurtainAirbagDeployed": "NO_EVENT", 
+            "driverSideAirbagDeployed": "NO_EVENT"
+        }, 
+        "avgFuelEconomy": 0.1, 
+        "myKey": {
+            "e911Override": "NO_DATA_EXISTS"
+        }, 
+        "satRadioESN": "165165650", 
+        "accPedalPosition": 0.5
+    }
+}

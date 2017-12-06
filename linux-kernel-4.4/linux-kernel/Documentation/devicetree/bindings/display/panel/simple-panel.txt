@@ -1,0 +1,97 @@
+Simple display panel
+
+Required properties:
+- power-supply: regulator to provide the supply voltage
+
+Optional properties:
+- compatible: value maybe one of the following
+		"simple-panel";
+		"simple-panel-dsi";
+
+- ddc-i2c-bus: phandle of an I2C controller used for DDC EDID probing
+- enable-gpios: GPIO pin to enable or disable the panel
+- backlight: phandle of the backlight device attached to the panel
+
+Required properties when compatible is "simple-panel" or "simple-panel-dsi":
+- display-timings: see display-timing.txt for information
+
+Optional properties when compatible is a dsi devices:
+- dsi,flags: dsi operation mode related flags
+- dsi,format: pixel format for video mode
+- dsi,lanes: number of active data lanes
+- reset-gpios: GPIO pin to reset the panel
+- reset-delay-ms: reset pulse width
+- panel-init-sequence: A byte stream formed by simple multiple dcs packets.
+	byte 0: dcs data type
+	byte 1: wait number of specified ms after dcs command transmitted
+	byte 2: packet payload length
+	byte 3 and beyond: number byte of payload
+- panel-exit-sequence: A byte stream formed by simple multiple dcs packets.
+	byte 0: dcs data type
+	byte 1: wait number of specified ms after dcs command transmitted
+	byte 2: packet payload length
+	byte 3 and beyond: number byte of payload
+
+Example:
+
+	panel: panel {
+		compatible = "cptt,claa101wb01";
+		ddc-i2c-bus = <&panelddc>;
+
+		power-supply = <&vdd_pnl_reg>;
+		enable-gpios = <&gpio 90 0>;
+
+		backlight = <&backlight>;
+	};
+
+Or:
+	panel: panel {
+		compatible = "simple-panel-dsi";
+		ddc-i2c-bus = <&panelddc>;
+
+		power-supply = <&vdd_pnl_reg>;
+		enable-gpios = <&gpio 90 0>;
+
+		reset-gpios = <&gpio 91 0>;
+		reset-delay-ms = <20>;
+
+		backlight = <&backlight>;
+
+		dsi,flags = <MIPI_DSI_MODE_VIDEO |
+			     MIPI_DSI_MODE_VIDEO_BURST |
+			     MIPI_DSI_MODE_VIDEO_SYNC_PULSE>;
+		dsi,format = <MIPI_DSI_FMT_RGB888>;
+		dsi,lanes = <4>;
+
+		panel-init-sequence = [
+			39 00 10 b1 6c 15 15 24 E4 11 f1 80 e4
+				 d7 23 80 c0 d2 58
+			...
+			05 78 01 11
+			05 00 01 29
+		];
+
+		panel-exit-sequence = [
+			05 00 01 28
+			05 78 01 10
+		];
+
+		display-timings {
+			native-mode = <&timing0>;
+			timing0: timing0 {
+				clock-frequency = <160000000>;
+				hactive = <1200>;
+				vactive = <1920>;
+				hback-porch = <21>;
+				hfront-porch = <120>;
+				vback-porch = <18>;
+				vfront-porch = <21>;
+				hsync-len = <20>;
+				vsync-len = <3>;
+				hsync-active = <0>;
+				vsync-active = <0>;
+				de-active = <0>;
+				pixelclk-active = <0>;
+			};
+		};
+	};

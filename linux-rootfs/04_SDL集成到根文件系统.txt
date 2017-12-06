@@ -1,0 +1,12 @@
+SDL集成到根文件系统并开机自动启动
+
+1. 复制sdl可执行包到根文件系统
+    $sudo cp -r rootfs_sdl/sdl_bin/ linux-rootfs/opt
+
+2. 修改自动启动脚本，让sdl开机自启动
+    $sudo gedit linux-rootfs/home/ubuntu/.profile
+	在最后增加以下内容：
+        echo "ubuntu" | sudo -S /opt/sdl_bin/start.sh &
+    （说明：echo "ubuntu"是输入密码，如果系统密码变更，此处也必须变更。）
+
+3. 至此，SDL就集成到了根文件系统里面了，开发板系统登录后，SDL自动启动。

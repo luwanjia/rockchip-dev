@@ -1,0 +1,15 @@
+FIRMWARE_VER:5.0.0
+MACHINE_MODEL:rk3288
+MACHINE_ID:007
+MANUFACTURER:RK3288
+MAGIC: 0x5041524B
+ATAG: 0x60000800
+MACHINE: 3288
+CHECK_MASK: 0x80
+PWR_HLD: 0,0,A,0,1
+#KERNEL_IMG: 0x62008000
+#FDT_NAME: rk-kernel.dtb
+#RECOVER_KEY: 1,1,0,20,0
+CMDLINE:console=ttyS2 androidboot.selinux=permissive androidboot.hardware=rk30board androidboot.console=ttyS2 init=/init initrd=0x62000000,0x00800000 mtdparts=rk29xxnand:0x00002000@0x00002000(uboot),0x00002000@0x00004000(misc),0x00008000@0x00006000(resource),0x00008000@0x0000e000(kernel),0x00010000@0x00016000(boot),0x00010000@0x00026000(recovery),0x0001a000@0x00036000(backup),0x00040000@0x00050000(cache),0x00002000@0x00090000(kpanic),0x00200000@0x00092000(system),0x00008000@0x00292000(metadata),0x00200000@0x0029A000(userdata),0x00020000@0x0049A000(radical_update),-@0x004BA000(user)
+# in section; per section 512(0x200) bytes
+#CMDLINE:console=ttyS2 androidboot.baseband=N/A androidboot.selinux=permissive androidboot.hardware=rk30board androidboot.console=ttyS2 init=/init initrd=0x62000000,0x00800000 mtdparts=rk29xxnand:0x00002000@0x00002000(uboot),0x00002000@0x00004000(misc),0x00008000@0x00006000(resource),0x00008000@0x0000e000(kernel),0x00010000@0x00016000(boot),0x00010000@0x00026000(recovery),0x0001a000@0x00036000(backup),0x00040000@0x00050000(cache),0x00002000@0x00090000(kpanic),0x00100000@0x00092000(system),0x00008000@0x00192000(metadata),0x00020000@0x0039A000(radical_update),-@0x003BA000(userdata)
