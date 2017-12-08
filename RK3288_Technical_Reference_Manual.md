@@ -134,8 +134,8 @@ This manual is for the development of linux on RK3288 board.
 
 ```
 $tar -xvf tools/arm-eabi-4.8.tar.gz
-$mv arm-eabi-4.8/ /opt/
-$echo "export PATH=$PATH:/opt/arm-eabi-4.8/bin" >> ~/.bashrc
+$sudo mv arm-eabi-4.8/ /opt/
+$echo "export PATH=\$PATH:/opt/arm-eabi-4.8/bin" >> ~/.bashrc
 $source ~/.bashrc
 ```
 ### 2.2 Install dependence
@@ -201,7 +201,7 @@ $sudo cp sources.list linux-rootfs/etc/apt/sources.list
 ```
 ### 3.7 Add boot service
 ```
-sudo cp -r rootfs_bootservice/* linux-rootfs
+$sudo cp -r rootfs_bootservice/* linux-rootfs
 ```
 ### 3.8 Mount rootfs
 ```
