@@ -65,7 +65,7 @@
         #apt remove gnome-mines      // 游戏
         #apt remove gnome-sudoku     // 游戏
         #apt remove pidgin           // 聊天客户端
-        #apt remove transmission-gtk // 下载工具
+        #apt remove transmission-* // 下载工具
         #apt remove gnome-software   // 软件中心
         #apt autoremove
     11> 安装qt5支持
